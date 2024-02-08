@@ -1,19 +1,23 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-interface Vehicle{
-   int getwheels();
-   void setwheels(int x);
-   int getpassengers();
-   void setpassengers(int x);
-   String getmodelname();
-   void setmodelname(String name);
-   void drive();
-   void stop();
+abstract class  Vehicle{
+    int Wheels, passengers;
+    String modelname;
+
+   abstract int getwheels();
+   abstract void setwheels(int x);
+   abstract int getpassengers();
+   abstract void setpassengers(int x);
+   abstract String getmodelname();
+   abstract void setmodelname(String name);
+   abstract void drive();
+   abstract void stop();
 
 }
-class Car implements Vehicle{
-    private int Wheels, passengers;
-    private String modelname;
+class Car extends Vehicle{
+    
 
     Car(){}
     Car(int Wheels,int passengers,String modelname){
@@ -50,12 +54,11 @@ class Car implements Vehicle{
    }
 
 }
-class Bike implements Vehicle{
+class Bike extends Vehicle{
 
     
 
-    int Wheels, passengers;
-    String modelname;
+  
     Bike(){}
     Bike(int Wheels,int passengers,String modelname){
         this.Wheels=Wheels;
@@ -91,10 +94,9 @@ public void stop(){
 }
 }
 
-class Auto implements Vehicle{
+class Auto extends Vehicle{
 
-    int Wheels, passengers;
-    String modelname;
+
     Auto(){}
     Auto(int Wheels,int passengers,String modelname){
         this.Wheels=Wheels;
@@ -134,27 +136,31 @@ public class Task1 {
     public static void main(String args[]){
 
         Car car[]= new Car[5];
+        List<Car> objs=new ArrayList<>();
+
 
         for(int i=0;i<5;i++){ 
-            Scanner obj= new Scanner(System.in);    //Set the parameters of each car
+            Scanner obj= new Scanner(System.in); 
+            System.out.print("enter the model");   //Set the parameters of each car
             String model=obj.nextLine();
-            car[i]=new Car(4,4,model);
+            objs.add(new Car(4,4,model));
         }
 
-        for(int i=0;i<5;i++){
-            car[i].getmodelname();          //see the modelname of each car
+        for(Car i : objs){
+            i.getmodelname();          //see the modelname of each car
         }
         
-        Bike bike[]= new Bike[10];
+        List<Bike> bikelist= new ArrayList<>();
         for(int i=0;i<10;i++){ 
-            Scanner obj= new Scanner(System.in);    //Set the parameters of each Bike
+            Scanner obj= new Scanner(System.in);        //Set the parameters of each Bike
+            System.out.print("enter the model");
             String model=obj.nextLine();
-            bike[i]=new Bike(2,2,model);
+            bikelist.add(new Bike(2,2,model));
         }
 
-        for(int i=0;i<10;i++){
-            if(bike[i].getmodelname()=="Bajaj"){    //print modelname only if it is Bajaj
-                bike[i].getmodelname();
+        for(Bike i:bikelist){
+            if(i.getmodelname()=="Bajaj"){    //print modelname only if it is Bajaj
+                i.getmodelname();
             }
         }
 
